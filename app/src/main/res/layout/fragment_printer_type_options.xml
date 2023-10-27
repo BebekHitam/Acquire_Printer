@@ -1,0 +1,56 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rental.path.PrinterTypeOptions">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:paddingTop="200dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/ColorPrinter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple"
+            android:text="@string/color_printer"/>
+
+        <Button
+            android:id="@+id/PrinterMonochrome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple"
+
+            android:text="@string/bw_printer"/>
+        <Button
+            android:id="@+id/MFPrinter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple"
+
+            android:text="@string/mfp"/>
+        <Button
+            android:id="@+id/cashierPrinter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple"
+
+            android:text="@string/dot_matrix"
+            />
+        <Button
+            android:id="@+id/PhotoPrint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple"
+
+            android:text="@string/photo_print"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

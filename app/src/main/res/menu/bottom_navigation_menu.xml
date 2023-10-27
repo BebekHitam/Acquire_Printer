@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ini untuk mengisi ivcon menu kamu -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_item_home"
+        android:title="@string/home"
+        android:icon="@drawable/homeicon"/>
+    <item
+        android:id="@+id/nav_item_favourite"
+        android:title="@string/favourite"
+        android:icon="@drawable/favouriteicon"/>
+    <item
+        android:id="@+id/nav_item_stall"
+        android:title="@string/stall"
+        android:icon="@drawable/stallicon"/>
+    <item
+        android:id="@+id/nav_item_chat"
+        android:title="@string/chat"
+        android:icon="@drawable/chaticon"/>
+    <item
+        android:id="@+id/nav_item_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/profileicon"/>
+
+</menu>

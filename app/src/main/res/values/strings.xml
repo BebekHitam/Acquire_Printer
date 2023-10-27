@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Acquire Printer</string>
+    <string name="favourite">Favourite</string>
+    <string name="home">Home</string>
+    <string name="stall">Stall</string>
+    <string name="chat">Chat</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Still Empty</string>
+    <string name="tesfragment">tesFragment</string>
+    <string name="password">password</string>
+    <string name="skip"><![CDATA[Skip>]]></string>
+    <string name="email">email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="password_confirmation">confirm password</string>
+    <string name="submit">Submit</string>
+    <string name="color_printer">Color Printer</string>
+    <string name="bw_printer">Printer Monochrome</string>
+    <string name="mfp">Printer Scan Copy</string>
+    <string name="dot_matrix"><![CDATA[Cashier Printer & Dot Matrix]]></string>
+    <string name="photo_print">Printer Photos</string>
+    <string name="printer">Printer</string>
+    <string name="scanner">Scanner</string>
+    <string name="scannerq">Scanner</string>
+    <string name="profile_name">Mr. Bob</string>
+    <string name="product">product</string>
+    <string name="coffe_milk">Coffe</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="city">City or Kabupaten</string>
+    <string name="profile_full_address_hint">Please fill full address</string>
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+
+</resources>

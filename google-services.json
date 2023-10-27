@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "71430481566",
+    "project_id": "acquire-printer",
+    "storage_bucket": "acquire-printer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71430481566:android:136d15b66c6593927ffd8f",
+        "android_client_info": {
+          "package_name": "com.example.acquireprinter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKsGaajgVA0MvHLa2C6omCHIWSuIsC5w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
