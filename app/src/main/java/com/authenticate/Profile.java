@@ -10,16 +10,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
+import android.widget.Toast;
 
 import com.example.acquireprinter.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Profile extends Fragment {
     View view;
     ProgressBar progressBar;
     TableLayout tableLayout;
+    Button keluar;
+    FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +39,24 @@ public class Profile extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+        keluar = view.findViewById(R.id.to_out);
+        keluar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser != null){
+                    FirebaseAuth.getInstance().signOut();
+                    Intent inten = new Intent(getContext(), Login.class);
+                    startActivity(inten);
+
+                } else if (currentUser == null) {
+                    Toast.makeText(getContext(), "Anda belum login", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
         tableLayout = view.findViewById(R.id.table_view_percentage);
         tableLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,4 +69,5 @@ public class Profile extends Fragment {
         progressBar.setProgress(50);
 
     }
+
 }

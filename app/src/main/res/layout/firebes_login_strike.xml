@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/input_emaile"
+                android:id="@+id/in_for_email"
                 android:layout_marginStart="20sp"
                 android:layout_marginEnd="20sp"
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/the_passwored_fbs"
+                android:id="@+id/in_for_psw"
                 android:layout_marginStart="20sp"
                 android:layout_marginEnd="20sp"
                 android:layout_width="match_parent"
@@ -49,9 +49,18 @@
                 android:orientation="horizontal"
                 android:gravity="center_horizontal">
                 <Button
-                    android:id="@+id/send_to_firebes"
+                    android:id="@+id/ke_sign_up"
                     android:layout_marginEnd="20sp"
-                    android:text="send"
+                    android:text="@string/sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFA500"
+
+                    />
+                <Button
+                    android:id="@+id/ke_login"
+                    android:layout_marginEnd="20sp"
+                    android:text="@string/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFA500"

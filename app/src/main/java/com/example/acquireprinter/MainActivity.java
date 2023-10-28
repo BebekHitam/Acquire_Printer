@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+    @Override
+    public void onBackPressed() {
+        // Close the application
+        finish();
+    }
 
 
 }

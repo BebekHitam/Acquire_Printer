@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
     //initiate firebase
     private FirebaseAuth AuthenticationLogin;
     Button login;
-    Button signup;
+    Button signup, logFirebes;
     TextView skip;
     EditText email, passwored;
     String ehmail, ohpassword;
@@ -47,6 +47,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+        logFirebes = findViewById(R.id.kefirebes_login);
 
         //Start firebase in here
         AuthenticationLogin = FirebaseAuth.getInstance();
@@ -90,8 +91,20 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+        logFirebes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, FBLogIn.class);
+                startActivity(intent);
+            }
+        });
 
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        // Call finish to exit the activity
+        finish();
     }
 }

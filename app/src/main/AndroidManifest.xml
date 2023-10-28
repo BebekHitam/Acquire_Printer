@@ -36,6 +36,7 @@
         <activity android:name="com.rental.path.RentalAggreement"/>
         <activity android:name="com.stall.TesFirebes"/>
         <activity android:name="com.authenticate.FBSign"/>
+        <activity android:name="com.authenticate.FBLogIn"/>
 
 
     </application>
