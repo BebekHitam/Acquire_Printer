@@ -37,6 +37,7 @@
         <activity android:name="com.stall.TesFirebes"/>
         <activity android:name="com.authenticate.FBSign"/>
         <activity android:name="com.authenticate.FBLogIn"/>
+        <activity android:name="com.authenticate.ProfileViewUser"/>
 
 
     </application>

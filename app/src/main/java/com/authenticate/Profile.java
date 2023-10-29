@@ -24,7 +24,7 @@ public class Profile extends Fragment {
     View view;
     ProgressBar progressBar;
     TableLayout tableLayout;
-    Button keluar, masukKembali;
+    Button keluar, masukKembali, toUserProfile;
     FirebaseAuth mAuth;
 
     @Override
@@ -41,11 +41,18 @@ public class Profile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         keluar = view.findViewById(R.id.to_out);
+        toUserProfile = view.findViewById(R.id.see_user_profile);
         masukKembali = view.findViewById(R.id.masuk_kembali);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null){
+            masukKembali.setVisibility(View.VISIBLE);
+        }else if (currentUser != null) {
+            masukKembali.setVisibility((View.INVISIBLE));
+        }
         keluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
+
                 if(currentUser != null){
                     FirebaseAuth.getInstance().signOut();
                     Intent inten = new Intent(getContext(), Login.class);
@@ -58,6 +65,7 @@ public class Profile extends Fragment {
 
             }
         });
+
 
         masukKembali.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +85,15 @@ public class Profile extends Fragment {
         });
         progressBar = view.findViewById(R.id.progres_profile);
         progressBar.setProgress(50);
+
+        //Ke User
+        toUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intens = new Intent(getContext(), ProfileViewUser.class);
+                startActivity(intens);
+            }
+        });
 
     }
 

@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_gravity="center"
         android:paddingTop="55dp">
         <TableLayout
             android:id="@+id/table_view_percentage"
@@ -78,6 +79,13 @@
                     android:text="makan"/>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+        <Button
+            android:id="@+id/see_user_profile"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See my Profile"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
