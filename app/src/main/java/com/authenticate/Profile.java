@@ -24,7 +24,7 @@ public class Profile extends Fragment {
     View view;
     ProgressBar progressBar;
     TableLayout tableLayout;
-    Button keluar;
+    Button keluar, masukKembali;
     FirebaseAuth mAuth;
 
     @Override
@@ -41,6 +41,7 @@ public class Profile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         keluar = view.findViewById(R.id.to_out);
+        masukKembali = view.findViewById(R.id.masuk_kembali);
         keluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +58,15 @@ public class Profile extends Fragment {
 
             }
         });
+
+        masukKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inten = new Intent(getContext(), Login.class);
+                startActivity(inten);
+            }
+        });
+
         tableLayout = view.findViewById(R.id.table_view_percentage);
         tableLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -80,12 +80,20 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp">
             <Button
                 android:id="@+id/to_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Log Out"/>
+            <Button
+                android:id="@+id/masuk_kembali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log me in"
+                />
 
         </LinearLayout>
     </LinearLayout>
