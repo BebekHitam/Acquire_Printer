@@ -1,0 +1,133 @@
+package com.FBPopulateData;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.acquireprinter.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+public class ThePopulator extends AppCompatActivity {
+    View view;
+    private EditText printerName, printerPrice, printerLocation;
+    ImageView printerView;
+    private Button chooseImage, submit;
+    private static final int PICK_IMAGE_REQUEST = 1;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.populator_layout);
+
+
+        printerName = findViewById(R.id.nameoftheprinter);
+        chooseImage = findViewById(R.id.go_to_file);
+        printerView = findViewById(R.id.the_sample);
+        printerPrice = findViewById(R.id.the_harga);
+        printerLocation = findViewById(R.id.printer_lokasi);
+        submit = findViewById(R.id.launch);
+
+
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickImage();
+            }
+        });
+
+
+
+
+
+
+    }
+    private void pickImage() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    //handle user image selection
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            if (data != null) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Uri imageUri = data.getData();
+                String namanya = printerName.getText().toString();
+                String harga = printerPrice.getText().toString();
+                String lokasi = printerLocation.getText().toString();
+
+                Glide.with(this)
+                        .load(imageUri)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL) // Optional: Cache the image
+                        .into(printerView);
+
+                FBDataModelPrinter printer = new FBDataModelPrinter();
+                printer.setName(namanya);
+                printer.setImage(imageUri.toString());
+                printer.setPrice(Double.parseDouble(harga));
+                printer.setCity(lokasi);
+
+                //masukkan dulu dalam set on click listener
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (namanya.isEmpty()){
+                            Toast.makeText(ThePopulator.this, "Please Fill the name", Toast.LENGTH_SHORT).show();
+                        }
+                        if (imageUri == null){
+                            Toast.makeText(ThePopulator.this, "please choose image", Toast.LENGTH_SHORT).show();
+                        }
+                        if (harga.isEmpty()){
+                            Toast.makeText(ThePopulator.this, "For how much?", Toast.LENGTH_SHORT).show();
+                        }
+                        if (lokasi.isEmpty()){
+                            Toast.makeText(ThePopulator.this, "Where are you?", Toast.LENGTH_SHORT).show();
+                        }
+                        db.collection("printers")
+                                .add(printer)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        // Successfully added data to Firestore
+                                        Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Handle the error
+                                        Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+
+
+
+
+                // Do something with the selected image URI (e.g., display it or upload it to Firebase Storage).
+            }
+        }
+    }
+
+}

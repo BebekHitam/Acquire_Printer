@@ -4,6 +4,7 @@
     >
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,7 @@
         <activity android:name="com.authenticate.FBSign"/>
         <activity android:name="com.authenticate.FBLogIn"/>
         <activity android:name="com.authenticate.ProfileViewUser"/>
+        <activity android:name="com.FBPopulateData.ThePopulator"/>
         
 
 

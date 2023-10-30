@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.FBPopulateData.ThePopulator;
 import com.example.acquireprinter.R;
 
 
@@ -35,7 +36,7 @@ public class FavouriteFragment extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TesFirebes.class );
+                Intent intent = new Intent(getContext(), ThePopulator.class );
                 startActivity(intent);
             }
         });
