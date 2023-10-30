@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -38,6 +40,8 @@
         <activity android:name="com.authenticate.FBSign"/>
         <activity android:name="com.authenticate.FBLogIn"/>
         <activity android:name="com.authenticate.ProfileViewUser"/>
+        
+
 
 
     </application>

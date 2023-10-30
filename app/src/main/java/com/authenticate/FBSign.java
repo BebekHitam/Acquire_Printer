@@ -62,7 +62,7 @@ public class FBSign extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(FBSign.this, "Authentication oke bos",
+                                        Toast.makeText(FBSign.this, "Authentication oke",
                                                 Toast.LENGTH_SHORT).show();
 
 

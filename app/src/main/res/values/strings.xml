@@ -32,6 +32,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="city">City or Kabupaten</string>
     <string name="profile_full_address_hint">Please fill full address</string>
+    <string name="start_rent">Start of Rent</string>
+    <string name="pick_a_date">Pick a Date</string>
+    <string name="end_rent">End of Rent</string>
+    <string name="price_total">Price Total</string>
     <string-array name="Gender">
         <item>Male</item>
         <item>Female</item>

@@ -35,6 +35,7 @@ android {
 dependencies {
 
 
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
 
@@ -46,6 +47,7 @@ dependencies {
     //ini untuk implementasi google mapsnya, utils untuk utilisasi jika user ingin zoom atau apalah
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-base:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     //
 
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))

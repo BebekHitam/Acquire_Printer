@@ -24,6 +24,7 @@ public class ItemDetail extends AppCompatActivity {
         setContentView(R.layout.item_detail_view);
 
         profill=findViewById(R.id.the_renter);
+        rent = findViewById(R.id.apply_rent);
 
         profill.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,14 @@ public class ItemDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 favourite.setBackground(getResources().getDrawable(R.drawable.select_favourite));
+            }
+        });
+        rent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intenss = new Intent(ItemDetail.this, RentalAggreement.class);
+                startActivity(intenss);
+                finish();
             }
         });
 

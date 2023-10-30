@@ -1,13 +1,20 @@
 package com.rental.path;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+
+import android.Manifest;
 import com.example.acquireprinter.R;
 import com.stall.DataStall;
 import com.stall.StallAdapter;
@@ -18,6 +25,7 @@ public class PrintersView extends AppCompatActivity {
 
     RecyclerView recyclerView;
     View view;
+    private static final int REQUEST_CODE_LOCATION = 1;
 
     ArrayList<DataStall> printerList;
     @Override
@@ -37,5 +45,24 @@ public class PrintersView extends AppCompatActivity {
         GridLayoutManager layout = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layout);
         recyclerView.setAdapter(adapter);
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Request the permission.
+            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
+        } else {
+            // The app already has the permission.
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_CODE_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // The user granted the permission.
+            } else {
+                // The user denied the permission.
+            }
+        }
     }
 }
