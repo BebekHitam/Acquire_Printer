@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class FBSign extends AppCompatActivity {
     private FirebaseAuth mAuth;
     View view;
-    EditText emailToSend, passwordToSend;
+    EditText emailToSend, passwordToSend, confirmPassword;
     Button send;
 
     @Override
@@ -40,38 +40,45 @@ public class FBSign extends AppCompatActivity {
         setContentView(R.layout.firebes_sign_data);
         emailToSend = findViewById(R.id.input_emaile);
         passwordToSend = findViewById(R.id.the_passwored_fbs);
+        confirmPassword = findViewById(R.id.the_confirm_password);
         send = findViewById(R.id.send_to_firebes);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailPack, passwordPack;
+                String emailPack, passwordPack, pleaseConfirmFirst;
                 emailPack = String.valueOf(emailToSend.getText());
                 passwordPack = String.valueOf(passwordToSend.getText());
+                pleaseConfirmFirst = String.valueOf(confirmPassword.getText());
                 if (TextUtils.isEmpty(emailPack)){
                     Toast.makeText(getApplicationContext(), "Please fill email", Toast.LENGTH_SHORT).show();
                 }
                 if (TextUtils.isEmpty(passwordPack)) {
                     Toast.makeText(getApplicationContext(), "Please Fill Password", Toast.LENGTH_SHORT).show();
                 }
-                mAuth.createUserWithEmailAndPassword(emailPack, passwordPack)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(FBSign.this, "Authentication oke bos",
-                                            Toast.LENGTH_SHORT).show();
+                if (pleaseConfirmFirst.equals(passwordPack)){
+                    mAuth.createUserWithEmailAndPassword(emailPack, passwordPack)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(FBSign.this, "Authentication oke bos",
+                                                Toast.LENGTH_SHORT).show();
 
 
-                                } else {
-                                    // If sign in fails, display a message to the user.
+                                    } else {
+                                        // If sign in fails, display a message to the user.
 
-                                    Toast.makeText(FBSign.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(FBSign.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
 
+                                    }
                                 }
-                            }
-                        });
+                            });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Password Must same as Confirm Password", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
