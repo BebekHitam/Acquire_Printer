@@ -44,11 +44,15 @@ public class Profile extends Fragment {
         toUserProfile = view.findViewById(R.id.see_user_profile);
         masukKembali = view.findViewById(R.id.masuk_kembali);
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        //terlalu berantakan buatkan viewmodel
+
+        //wrap this in another call/method
         if (currentUser == null){
             masukKembali.setVisibility(View.VISIBLE);
         }else if (currentUser != null) {
             masukKembali.setVisibility((View.INVISIBLE));
         }
+        //jika lulus permanensi coba di wrap/dalam func/method/callback lain
         keluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

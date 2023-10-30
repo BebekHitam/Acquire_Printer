@@ -2,6 +2,7 @@ package com.stall;
 
 import java.io.Serializable;
 
+
 //kelas ini digunakan untuk getter data stall, dan kamu bisa mengirimkannya ke
 public class DataStall implements Serializable {
     public String itemName;
