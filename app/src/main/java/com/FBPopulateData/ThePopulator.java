@@ -142,6 +142,7 @@ public class ThePopulator extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 // The image failed to upload to Firebase Storage
                                 // Handle the error
+                                Toast.makeText(ThePopulator.this, "Upload Failed Succesfully", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
