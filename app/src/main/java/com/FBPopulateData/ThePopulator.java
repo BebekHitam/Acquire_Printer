@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -30,6 +31,7 @@ public class ThePopulator extends AppCompatActivity {
     private EditText printerName, printerPrice, printerLocation;
     ImageView printerView;
     private Button chooseImage, submit;
+    private TextView nameOfImage;
     private static final int PICK_IMAGE_REQUEST = 1;
 
     @Override
@@ -37,10 +39,12 @@ public class ThePopulator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.populator_layout);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
         printerName = findViewById(R.id.nameoftheprinter);
         chooseImage = findViewById(R.id.go_to_file);
+        nameOfImage = findViewById(R.id.image_name);
         printerView = findViewById(R.id.the_sample);
         printerPrice = findViewById(R.id.the_harga);
         printerLocation = findViewById(R.id.printer_lokasi);
@@ -60,12 +64,8 @@ public class ThePopulator extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String namanya = printerName.getText().toString();
-                String harga = printerPrice.getText().toString();
-                String lokasi = printerLocation.getText().toString();
-                if (namanya.isEmpty()|| harga.isEmpty() || lokasi.isEmpty()){
-                    Toast.makeText(ThePopulator.this, "Please Fill the name", Toast.LENGTH_SHORT).show();
-                }
+
+
                 //if (){
                     //Toast.makeText(ThePopulator.this, "please choose image", Toast.LENGTH_SHORT).show();
                 //}
@@ -121,10 +121,23 @@ public class ThePopulator extends AppCompatActivity {
                         .load(imageUri)
                         .diskCacheStrategy(DiskCacheStrategy.ALL) // Optional: Cache the image
                         .into(printerView);
+                //preview nama imagenya
+                String imageName = imageUri.getLastPathSegment();
+                nameOfImage.setText(imageName);
 
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String namanya = printerName.getText().toString();
+                        String harga = printerPrice.getText().toString();
+                        String lokasi = printerLocation.getText().toString();
+
+                        if (namanya.isEmpty()|| harga.isEmpty() || lokasi.isEmpty()){
+                            Toast.makeText(ThePopulator.this, "Please Fill the data", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
                         // Upload the selected image to Firebase Storage
                         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + imageUri.getLastPathSegment());
                         storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -149,24 +162,10 @@ public class ThePopulator extends AppCompatActivity {
                 });
             }
         }
-
-        /*
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            if (data != null) {
-
-                Uri imageUri = data.getData();
-
-
-                Glide.with(this)
-                        .load(imageUri)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL) // Optional: Cache the image
-                        .into(printerView);
-
-                // Do something with the selected image URI (e.g., display it or upload it to Firebase Storage).
-            }
-        }*/
     }
-    // Upload the selected image to Firebase Storage
+    public void stringCollector(){
+
+    }
 
 
 

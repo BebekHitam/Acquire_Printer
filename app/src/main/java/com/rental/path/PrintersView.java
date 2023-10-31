@@ -40,6 +40,14 @@ public class PrintersView extends AppCompatActivity {
         printerList.add(new DataStall("Printer L4266",  R.drawable.printer_l4266,10000, "Jakarta"));
         printerList.add(new DataStall("Printer M1100",  R.drawable.printer_m1100_sfp_m, 20000,"Bandung"));
         printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
+        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
 
         StallAdapter adapter = new StallAdapter(printerList, this);
         GridLayoutManager layout = new GridLayoutManager(this, 2);
