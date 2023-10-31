@@ -2,8 +2,10 @@ package com.rental.path;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -20,6 +22,7 @@ public class RentalAggreement extends AppCompatActivity {
     View view;
     private EditText StartDate, EndDate;
     private Calendar calendar;
+    Button finalRent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,14 @@ public class RentalAggreement extends AppCompatActivity {
 
         StartDate = findViewById(R.id.start_rent_date);
         EndDate = findViewById(R.id.end_rent_date);
+        finalRent = findViewById(R.id.final_apply_rent_button);
+        finalRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RentalAggreement.this, RentalStatus.class);
+                startActivity(intent);
+            }
+        });
 
         calendar = Calendar.getInstance();
 

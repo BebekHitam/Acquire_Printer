@@ -44,6 +44,7 @@
         <activity android:name="com.authenticate.ProfileViewUser"/>
         <activity android:name="com.FBPopulateData.ThePopulator"/>
         <activity android:name="com.FBPopulateData.TesterFB"/>
+        <activity android:name="com.rental.path.RentalStatus" />
 
         
 
