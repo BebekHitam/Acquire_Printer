@@ -6,7 +6,7 @@ public class FBDataModelPrinter {
     private double price;
     private String city;
 
-    public FBDataModelPrinter(String name, String image, double price, String city) {
+    public FBDataModelPrinter() {
         this.name = name;
         this.image = image;
         this.price = price;
@@ -14,9 +14,7 @@ public class FBDataModelPrinter {
     }
 
     //ini masih meragukan coba lagi nanti
-    public FBDataModelPrinter() {
 
-    }
 
     public String getName() {
         return name;

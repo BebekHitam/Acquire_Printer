@@ -81,7 +81,7 @@
         </LinearLayout>
         <Button
             android:id="@+id/see_user_profile"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="See my Profile"
@@ -104,6 +104,11 @@
                 />
 
         </LinearLayout>
+        <Button
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test"/>
     </LinearLayout>
 
 

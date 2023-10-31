@@ -4,71 +4,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
-        android:padding="50dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/printer_name"/>
-        <EditText
-            android:id="@+id/nameoftheprinter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/printer_name"/>
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom">
-            <ImageView
-                android:id="@+id/the_sample"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-
-                />
-            <Button
-                android:id="@+id/go_to_file"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            android:padding="50dp">
+            <TextView
+                android:paddingTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="File"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/printer_price"/>
-        <EditText
-            android:id="@+id/the_harga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/printer_price"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/printer_location"/>
-        <EditText
-            android:id="@+id/printer_lokasi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/printer_locations"
-            />
-        <Button
-            android:id="@+id/launch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="uplodd"/>
+                android:gravity="center"
+                android:text="@string/printer_name"/>
+            <EditText
+                android:id="@+id/nameoftheprinter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/printer_name"/>
+            <TextView
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Printer Picture"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+                <ImageView
+                    android:id="@+id/the_sample"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
 
-    </LinearLayout>
+                    />
+                <Button
+                    android:id="@+id/go_to_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="File"/>
+            </LinearLayout>
+            <TextView
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/printer_price"/>
+            <EditText
+                android:id="@+id/the_harga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="@string/printer_price"/>
+            <TextView
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/printer_location"/>
+            <EditText
+                android:id="@+id/printer_lokasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/printer_locations"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"/>
+            <Button
+                android:id="@+id/launch_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="uplodd"/>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

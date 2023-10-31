@@ -56,6 +56,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:21.1.0")
 
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
 
     //image handler
     implementation("com.github.bumptech.glide:glide:4.12.0")

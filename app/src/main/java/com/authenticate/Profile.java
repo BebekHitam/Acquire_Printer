@@ -24,7 +24,7 @@ public class Profile extends Fragment {
     View view;
     ProgressBar progressBar;
     TableLayout tableLayout;
-    Button keluar, masukKembali, toUserProfile;
+    Button keluar, masukKembali, toUserProfile, testArea;
     FirebaseAuth mAuth;
 
     @Override
@@ -43,6 +43,7 @@ public class Profile extends Fragment {
         keluar = view.findViewById(R.id.to_out);
         toUserProfile = view.findViewById(R.id.see_user_profile);
         masukKembali = view.findViewById(R.id.masuk_kembali);
+        testArea = view.findViewById(R.id.test);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //terlalu berantakan buatkan viewmodel
 
@@ -78,6 +79,15 @@ public class Profile extends Fragment {
                 startActivity(inten);
             }
         });
+
+        /*
+        testArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TestForView.class);
+                startActivity(intent);
+            }
+        });*/
 
         tableLayout = view.findViewById(R.id.table_view_percentage);
         tableLayout.setOnClickListener(new View.OnClickListener() {

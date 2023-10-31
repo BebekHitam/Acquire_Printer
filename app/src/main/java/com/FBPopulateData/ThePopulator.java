@@ -21,6 +21,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class ThePopulator extends AppCompatActivity {
     View view;
@@ -33,6 +36,7 @@ public class ThePopulator extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.populator_layout);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
         printerName = findViewById(R.id.nameoftheprinter);
@@ -40,7 +44,7 @@ public class ThePopulator extends AppCompatActivity {
         printerView = findViewById(R.id.the_sample);
         printerPrice = findViewById(R.id.the_harga);
         printerLocation = findViewById(R.id.printer_lokasi);
-        submit = findViewById(R.id.launch);
+        submit = findViewById(R.id.launch_to);
 
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
@@ -51,9 +55,49 @@ public class ThePopulator extends AppCompatActivity {
         });
 
 
+/*
+        //masukkan dulu dalam set on click listener
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String namanya = printerName.getText().toString();
+                String harga = printerPrice.getText().toString();
+                String lokasi = printerLocation.getText().toString();
+                if (namanya.isEmpty()|| harga.isEmpty() || lokasi.isEmpty()){
+                    Toast.makeText(ThePopulator.this, "Please Fill the name", Toast.LENGTH_SHORT).show();
+                }
+                //if (){
+                    //Toast.makeText(ThePopulator.this, "please choose image", Toast.LENGTH_SHORT).show();
+                //}
+                else  {
+                    FBDataModelPrinter printer = new FBDataModelPrinter();
+                    printer.setName(namanya);
+                    printer.setImage("oke");
+                    printer.setPrice(Double.parseDouble(harga));
+                    printer.setCity(lokasi);
+                    db.collection("printers")
+                            .add(printer)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    // Successfully added data to Firestore
+                                    Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Handle the error
+                                    Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
 
 
 
+
+            }
+        });*/
 
     }
     private void pickImage() {
@@ -70,64 +114,60 @@ public class ThePopulator extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
             if (data != null) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                Uri imageUri = data.getData();
-                String namanya = printerName.getText().toString();
-                String harga = printerPrice.getText().toString();
-                String lokasi = printerLocation.getText().toString();
+
+                final Uri imageUri = data.getData();
 
                 Glide.with(this)
                         .load(imageUri)
                         .diskCacheStrategy(DiskCacheStrategy.ALL) // Optional: Cache the image
                         .into(printerView);
 
-                FBDataModelPrinter printer = new FBDataModelPrinter();
-                printer.setName(namanya);
-                printer.setImage(imageUri.toString());
-                printer.setPrice(Double.parseDouble(harga));
-                printer.setCity(lokasi);
-
-                //masukkan dulu dalam set on click listener
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        if (namanya.isEmpty()){
-                            Toast.makeText(ThePopulator.this, "Please Fill the name", Toast.LENGTH_SHORT).show();
-                        }
-                        if (imageUri == null){
-                            Toast.makeText(ThePopulator.this, "please choose image", Toast.LENGTH_SHORT).show();
-                        }
-                        if (harga.isEmpty()){
-                            Toast.makeText(ThePopulator.this, "For how much?", Toast.LENGTH_SHORT).show();
-                        }
-                        if (lokasi.isEmpty()){
-                            Toast.makeText(ThePopulator.this, "Where are you?", Toast.LENGTH_SHORT).show();
-                        }
-                        db.collection("printers")
-                                .add(printer)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        // Successfully added data to Firestore
-                                        Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        // Handle the error
-                                        Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                    public void onClick(View v) {
+                        // Upload the selected image to Firebase Storage
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + imageUri.getLastPathSegment());
+                        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // The image has been successfully uploaded to Firebase Storage
+                                // Get the download URL for the image
+                                //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                Toast.makeText(ThePopulator.this, "Upload succesfull", Toast.LENGTH_SHORT).show();
+
+                                // Do something with the download URL (e.g., display it or save it to a database)
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // The image failed to upload to Firebase Storage
+                                // Handle the error
+                            }
+                        });
                     }
                 });
+            }
+        }
+
+        /*
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            if (data != null) {
+
+                Uri imageUri = data.getData();
 
 
-
+                Glide.with(this)
+                        .load(imageUri)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL) // Optional: Cache the image
+                        .into(printerView);
 
                 // Do something with the selected image URI (e.g., display it or upload it to Firebase Storage).
             }
-        }
+        }*/
     }
+    // Upload the selected image to Firebase Storage
+
+
+
 
 }
