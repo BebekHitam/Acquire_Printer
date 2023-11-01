@@ -6,6 +6,7 @@
         android:id="@+id/nav_item_home"
         android:title="@string/home"
         android:icon="@drawable/homeicon"/>
+
     <item
         android:id="@+id/nav_item_favourite"
         android:title="@string/favourite"
@@ -18,6 +19,8 @@
         android:id="@+id/nav_item_chat"
         android:title="@string/chat"
         android:icon="@drawable/chaticon"/>
+
+
     <item
         android:id="@+id/nav_item_profile"
         android:title="@string/profile"

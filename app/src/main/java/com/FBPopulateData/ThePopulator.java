@@ -59,45 +59,44 @@ public class ThePopulator extends AppCompatActivity {
         });
 
 
-/*
+
         //masukkan dulu dalam set on click listener
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String namanya = printerName.getText().toString();
+                String harga = printerPrice.getText().toString();
+                String lokasi = printerLocation.getText().toString();
 
 
-                //if (){
-                    //Toast.makeText(ThePopulator.this, "please choose image", Toast.LENGTH_SHORT).show();
-                //}
-                else  {
-                    FBDataModelPrinter printer = new FBDataModelPrinter();
-                    printer.setName(namanya);
-                    printer.setImage("oke");
-                    printer.setPrice(Double.parseDouble(harga));
-                    printer.setCity(lokasi);
-                    db.collection("printers")
-                            .add(printer)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                FBDataModelPrinter printer = new FBDataModelPrinter();
+                printer.setName(namanya);
+
+                printer.setPrice(Integer.parseInt(harga));
+                printer.setCity(lokasi);
+                db.collection("printers")
+                        .add(printer)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     // Successfully added data to Firestore
                                     Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
                                 }
                             })
-                            .addOnFailureListener(new OnFailureListener() {
+                        .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     // Handle the error
                                     Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+
 
 
 
 
             }
-        });*/
+        });
 
     }
     private void pickImage() {
@@ -125,9 +124,12 @@ public class ThePopulator extends AppCompatActivity {
                 String imageName = imageUri.getLastPathSegment();
                 nameOfImage.setText(imageName);
 
+                /*
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                         String namanya = printerName.getText().toString();
                         String harga = printerPrice.getText().toString();
                         String lokasi = printerLocation.getText().toString();
@@ -135,6 +137,29 @@ public class ThePopulator extends AppCompatActivity {
                         if (namanya.isEmpty()|| harga.isEmpty() || lokasi.isEmpty()){
                             Toast.makeText(ThePopulator.this, "Please Fill the data", Toast.LENGTH_SHORT).show();
                         }
+
+                        FBDataModelPrinter printer = new FBDataModelPrinter();
+                        printer.setName(namanya);
+                        printer.setPrice(Integer.parseInt(harga));
+                        printer.setCity(lokasi);
+                        db.collection("printers")
+                                .add(printer)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        // Successfully added data to Firestore
+                                        Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Handle the error
+                                        Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+
 
 
 
@@ -160,6 +185,8 @@ public class ThePopulator extends AppCompatActivity {
                         });
                     }
                 });
+
+                 */
             }
         }
     }

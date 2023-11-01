@@ -12,13 +12,32 @@
         <Button
             android:id="@+id/toss"
             android:text="toss"
+            android:backgroundTint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/tes_image_preview"
             android:layout_width="wrap_content"
+            android:backgroundTint="@color/white"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="80dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/under_maintenance" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Under Progress"
+            android:textSize="36dp" />
 
     </LinearLayout>
+
 
 </FrameLayout>

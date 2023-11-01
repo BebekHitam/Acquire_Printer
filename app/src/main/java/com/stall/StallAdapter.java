@@ -52,6 +52,7 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
         holder.image.setImageResource(item.getImageId());
         //set harganya
         holder.price.setText(Integer.toString(item.getPrice()));
+        holder.city.setText(item.getCity());
         
         //holder.city.setText(item.getCity());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

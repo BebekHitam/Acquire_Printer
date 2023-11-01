@@ -23,8 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class FBLogIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
     View view;
-    private TextView skip;
-    private Button login, sugnup;
+    private TextView skip, sugnup;
+    private Button login;
     private EditText email, password;
 
     @Override

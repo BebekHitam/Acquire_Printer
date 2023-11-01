@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_gravity=""
             android:padding="25dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/profile_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/cat_bob"/>
+                    android:src="@drawable/cat_bob" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:text="Mr. Bob"
-                    android:textSize="25dp"/>
+                    android:textSize="25dp" />
 
             </LinearLayout>
 
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="I need a printer"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="I need a printer"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/profile_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:text="+1252453876"/>
+                android:text="+1252453876"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/profile_job"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:text="St. Sermo, No. 15"/>
+                android:text="St. Sermo, No. 15"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/profile_address"
@@ -65,22 +74,22 @@
                 android:layout_marginTop="16dp"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/profile_full_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/profile_full_address_hint" />
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapview_for_the_user"
-                xmlns:map="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                map:uiZoomControls="true"
-                map:cameraTilt="30"/>
-
+                android:text=""/>
 
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapview_for_the_user"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        map:cameraTilt="30"
+        map:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        map:uiZoomControls="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
