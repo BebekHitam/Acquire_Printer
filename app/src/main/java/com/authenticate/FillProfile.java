@@ -121,9 +121,9 @@ public class FillProfile extends AppCompatActivity {
                 //if pertama adalah untuk melakukan checking apakah user ada
 
                 if (user == null){
-                    Toast.makeText(getApplicationContext(), "Anda Belum masuk", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "You not logged in yet", Toast.LENGTH_SHORT).show();
                 } else if (user != null) {
-                    Toast.makeText(getApplicationContext(), "Terkirim tapi belum kecantol", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Sended but not stored in data", Toast.LENGTH_SHORT).show();
 
                 }
             }

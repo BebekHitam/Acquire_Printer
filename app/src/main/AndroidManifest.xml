@@ -45,6 +45,8 @@
         <activity android:name="com.FBPopulateData.ThePopulator"/>
         <activity android:name="com.FBPopulateData.TesterFB"/>
         <activity android:name="com.rental.path.RentalStatus" />
+        <activity android:name="com.stall.UnderProgress"/>
+        <activity android:name="com.stall.comChat" />
 
         
 

@@ -162,15 +162,18 @@
             android:backgroundTint="@drawable/select_favourite"/>
 
         <Button
+            android:id="@+id/to_talk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chat" />
+            android:text="@string/chat"
+            android:backgroundTint="@drawable/select_favourite"/>
 
         <Button
             android:id="@+id/apply_rent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply for Rent" />
+            android:text="Apply for Rent"
+            android:backgroundTint="@drawable/select_favourite"/>
 
 
     </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class FBLogIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
     View view;
+    private TextView skip;
     private Button login, sugnup;
     private EditText email, password;
 
@@ -30,6 +32,7 @@ public class FBLogIn extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
@@ -46,9 +49,11 @@ public class FBLogIn extends AppCompatActivity {
         password = findViewById(R.id.in_for_psw);
 
         mAuth = FirebaseAuth.getInstance();
-
+        skip = findViewById(R.id.skip_buttonee);
         login = findViewById(R.id.ke_login);
         sugnup = findViewById(R.id.ke_sign_up);
+
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +95,14 @@ public class FBLogIn extends AppCompatActivity {
                 Intent inton = new Intent(getApplicationContext(), FBSign.class);
                 startActivity(inton);
                 finish();
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

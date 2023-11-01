@@ -38,6 +38,16 @@
             android:inputType="date"
             android:onClick="showDatePickerDialog" />
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Location" />
+        <Button
+            android:id="@+id/get_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Location"
+            android:layout_gravity="center"/>
+        <TextView
             android:layout_gravity="center"
             android:padding="5dp"
             android:layout_width="wrap_content"

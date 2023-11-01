@@ -40,6 +40,7 @@
     <string name="printer_price">Printer Price</string>
     <string name="printer_location">Printer Location</string>
     <string name="printer_locations">City or Kabupaten</string>
+    <string name="application_title">Acquire Printer on</string>
     <string-array name="Gender">
         <item>Male</item>
         <item>Female</item>

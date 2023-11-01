@@ -44,14 +44,17 @@ public class Profile extends Fragment {
         toUserProfile = view.findViewById(R.id.see_user_profile);
         masukKembali = view.findViewById(R.id.masuk_kembali);
         testArea = view.findViewById(R.id.test);
+        testArea.setVisibility(View.INVISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //terlalu berantakan buatkan viewmodel
 
         //wrap this in another call/method
         if (currentUser == null){
             masukKembali.setVisibility(View.VISIBLE);
+            keluar.setVisibility(View.INVISIBLE);
         }else if (currentUser != null) {
             masukKembali.setVisibility((View.INVISIBLE));
+            keluar.setVisibility(View.VISIBLE);
         }
         //jika lulus permanensi coba di wrap/dalam func/method/callback lain
         keluar.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +78,7 @@ public class Profile extends Fragment {
         masukKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inten = new Intent(getContext(), Login.class);
+                Intent inten = new Intent(getContext(), FBLogIn.class);
                 startActivity(inten);
             }
         });

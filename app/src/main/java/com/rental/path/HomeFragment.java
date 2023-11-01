@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.acquireprinter.R;
+import com.stall.UnderProgress;
 
 public class HomeFragment extends Fragment {
 
@@ -49,12 +50,16 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Not Available Yet", Toast.LENGTH_SHORT).show();
+                Intent inteni = new Intent(getContext(), UnderProgress.class);
+                startActivity(inteni);
             }
         });
         isTheScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Not Available Yet", Toast.LENGTH_SHORT).show();
+                Intent inteni = new Intent(getContext(), UnderProgress.class);
+                startActivity(inteni);
             }
         });
 

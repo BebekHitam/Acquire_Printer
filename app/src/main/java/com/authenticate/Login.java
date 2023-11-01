@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth AuthenticationLogin;
     Button login;
     Button signup, logFirebes;
-    TextView skip;
+    private TextView skip;
     EditText email, passwored;
     String ehmail, ohpassword;
 

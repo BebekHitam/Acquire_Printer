@@ -34,6 +34,7 @@ public class RentalStatus extends AppCompatActivity {
         items.add(new ItemData(R.drawable.pin_day, "Day 10"));
         items.add(new ItemData(R.drawable.pin_day, "Day 11 End of Rent"));
         // Add more items as needed
+        //add day calculator in here, so if the day change the list added
 
         ListRentAdapter adapter = new ListRentAdapter(this, items);
 
