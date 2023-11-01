@@ -6,13 +6,14 @@ import java.io.Serializable;
 //kelas ini digunakan untuk getter data stall, dan kamu bisa mengirimkannya ke
 public class DataStall implements Serializable {
     public String itemName;
-    public int imageId;
+//    public int imageId;
+    public String imageUrl;
     public int price;
     public String city;
 
-    public DataStall(String itemName, int imageId, int price, String city){
+    public DataStall(String itemName, String imageUrl, int price, String city){
         this.itemName=itemName;
-        this.imageId=imageId;
+        this.imageUrl=imageUrl;
         this.price=price;
         this.city = city;
     }
@@ -22,16 +23,16 @@ public class DataStall implements Serializable {
 
     public void setPrice(int price){this.price=price;}
 
-    public int getImageId() {
-        return imageId;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getItemName() {
         return itemName;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setImageId(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public void setItemName(String itemName) {

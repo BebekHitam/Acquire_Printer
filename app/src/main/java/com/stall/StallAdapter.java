@@ -17,6 +17,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.authenticate.SignUp;
+import com.bumptech.glide.Glide;
 import com.example.acquireprinter.R;
 
 import java.io.Serializable;
@@ -49,7 +50,8 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
         //set datastall name/price
         holder.text.setText(item.getItemName());
         //set datastall image
-        holder.image.setImageResource(item.getImageId());
+        //holder.image.setImageResource(item.getImageId());
+        Glide.with(thisUp).load(item.imageUrl).into(holder.image);
         //set harganya
         holder.price.setText(Integer.toString(item.getPrice()));
         holder.city.setText(item.getCity());

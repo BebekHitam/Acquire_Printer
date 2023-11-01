@@ -96,11 +96,12 @@ public class PrintersView extends AppCompatActivity {
                         // Iterate through Firestore documents and add data to the list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String name = document.getString("name");
+                            String imageUrl = document.getString("image");
                             long price = document.getLong("price");
                             String location = document.getString("city");
                             // Add this data to your printerList
                             int priceInt = (int) price;
-                            printerList.add(new DataStall(name, R.drawable.printer_l1210, priceInt, location));
+                            printerList.add(new DataStall(name, imageUrl, priceInt, location));
                         }
                         // Notify the adapter that data has changed
                         StallAdapter adapter = new StallAdapter(printerList, PrintersView.this);
