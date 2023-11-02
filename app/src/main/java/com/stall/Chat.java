@@ -1,5 +1,6 @@
 package com.stall;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,12 +10,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.SplashScreen.ItemData;
+import com.SplashScreen.ListRentAdapter;
 import com.example.acquireprinter.R;
 
 import java.util.ArrayList;
@@ -33,21 +36,38 @@ public class Chat extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_chat, container, false);
+        view = inflater.inflate(R.layout.chat_person, container, false);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        boxChat = view.findViewById(R.id.chatee);
+
+        List<ItemData> items = new ArrayList<>();
+        items.add(new ItemData(R.drawable.the_renter, "Mr. Fajar"));
+
+        ListRentAdapter adapter = new ListRentAdapter(getContext(), items);
+
+        ListView listView = view.findViewById(R.id.the_names); // Make sure to have a ListView with id 'listView' in your layout
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), TalkTo.class);
+                //intent.putExtra("name", listView.getItemAtPosition(position));
+                startActivity(intent);
+            }
+        });
+
 
 
         //textChat = view.findViewById(R.id.textView);
         //textChat.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
 
         /*
-        rotected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -82,7 +102,13 @@ public class Chat extends Fragment {
 
 
         */
+        /*
 
+        */
+
+
+        /*
+        //fungsi untuk ngobreol
         List<String> dummeyChat = new ArrayList<>();
         gottext = view.findViewById(R.id.gottext);
         send = view.findViewById(R.id.send);
@@ -104,6 +130,9 @@ public class Chat extends Fragment {
 
             }
         });
+        */
+
+
 
         /*
         * boxChat = view.findViewById(R.id.chatee);

@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ecotank_mfp"/>
+                android:src="@drawable/epson_l3150"/>
             <!--tools:src="@drawable/placeholder" -->
 
 
@@ -34,7 +34,7 @@
                 android:layout_marginBottom="8dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Epson L8050" />
+                android:text="Epson L3150" />
 
             <TextView
                 android:id="@+id/item_price"
@@ -118,7 +118,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                android:text="Printer Type - Ink Tank; Functionality - All-in-One (Print, Scan, Copy) , Scanner type - Flatbed; Printer Output - Colour
+Connectivity - Wi-Fi, USB, App
+Pages per minute - 33 pages (Black and White), 15 pages (Colour) ; Cost per page - 7 paise (Black and White), 18 paise (Colour) - As per ISO standards
+Ideal usage - Home and Small office, Regular / Heavy usage (more than 300 pages per month)
+Page size supported - A4, A5, A6, B5, C6, DL ; Duplex Print - Manual ; Print resolution - 5760 x 1440
+Compatible Ink Bottle - T003 (Black), T003 (Cyan), T003 (Magenta), T003 (Yellow) ; Page Yield - 4500 pages (Black and White), 7500 pages (Colour) ; Comes with 4 original Epson Ink Bottle (one of each colour - Bk, C, M, Y) inside the box
+Warranty - 1 year or 30,000 pages whichever is earlier on-site warranty from the date of purchase"
                 android:scrollbars="vertical" />
             <TextView
                 android:padding="20dp"

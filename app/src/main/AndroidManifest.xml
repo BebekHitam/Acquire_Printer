@@ -47,6 +47,7 @@
         <activity android:name="com.rental.path.RentalStatus" />
         <activity android:name="com.stall.UnderProgress"/>
         <activity android:name="com.stall.comChat" />
+        <activity android:name="com.stall.TalkTo"/>
 
         
 

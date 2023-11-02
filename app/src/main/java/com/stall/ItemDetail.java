@@ -81,7 +81,7 @@ public class ItemDetail extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inte = new Intent(ItemDetail.this, comChat.class);
+                Intent inte = new Intent(ItemDetail.this, TalkTo.class);
                 startActivity(inte);
                 finish();
             }
