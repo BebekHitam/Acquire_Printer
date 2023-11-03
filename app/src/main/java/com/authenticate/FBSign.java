@@ -52,10 +52,10 @@ public class FBSign extends AppCompatActivity {
                 if (TextUtils.isEmpty(emailPack)){
                     Toast.makeText(getApplicationContext(), "Please fill email", Toast.LENGTH_SHORT).show();
                 }
-                if (TextUtils.isEmpty(passwordPack)) {
+                else if(TextUtils.isEmpty(passwordPack)) {
                     Toast.makeText(getApplicationContext(), "Please Fill Password", Toast.LENGTH_SHORT).show();
                 }
-                if (pleaseConfirmFirst.equals(passwordPack)){
+                else if (pleaseConfirmFirst.equals(passwordPack)){
                     mAuth.createUserWithEmailAndPassword(emailPack, passwordPack)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
