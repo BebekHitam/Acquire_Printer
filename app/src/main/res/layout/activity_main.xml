@@ -17,11 +17,10 @@
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:layout_gravity="bottom"
-        android:background="@color/green_lime"
+
         app:menu="@menu/bottom_navigation_menu"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="#FBF129"
-        app:itemTextColor="#ffffff"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

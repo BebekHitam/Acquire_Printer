@@ -60,6 +60,7 @@ public class ThePopulator extends AppCompatActivity {
 
 
 
+        /*
         //masukkan dulu dalam set on click listener
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +98,7 @@ public class ThePopulator extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
     }
     private void pickImage() {
@@ -125,7 +126,7 @@ public class ThePopulator extends AppCompatActivity {
                 String imageName = imageUri.getLastPathSegment();
                 nameOfImage.setText(imageName);
 
-                /*
+
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -187,7 +188,7 @@ public class ThePopulator extends AppCompatActivity {
                     }
                 });
 
-                 */
+
             }
         }
     }
