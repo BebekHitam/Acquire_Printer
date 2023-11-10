@@ -63,7 +63,7 @@ public class Profile extends Fragment {
 
                 if(currentUser != null){
                     FirebaseAuth.getInstance().signOut();
-                    Intent inten = new Intent(getContext(), Login.class);
+                    Intent inten = new Intent(getContext(), FBLogIn.class);
                     startActivity(inten);
 
                 } else if (currentUser == null) {

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue_sky"
+
     tools:context="com.stall.MyStall">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,17 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fill_printer_data"
+            android:textSize="36dp"
+            app:layout_constraintBottom_toTopOf="@+id/printer_in_the_sky"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <ImageButton
             android:id="@+id/printer_in_the_sky"
             android:layout_width="174dp"
             android:layout_height="200dp"
+            android:layout_marginBottom="280dp"
+            android:backgroundTint="@color/white"
             android:scaleType="centerCrop"
             android:src="@drawable/printerct_removebg"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:backgroundTint="#87CEEB"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

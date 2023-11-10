@@ -1,5 +1,8 @@
 package com.rental.path;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,6 +73,7 @@ public class RentalAggreement extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
@@ -79,6 +83,7 @@ public class RentalAggreement extends AppCompatActivity {
                 EndDate.setText(sdf.format(calendar.getTime()));
             }
         }, year, month, day);
+
 
         datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override

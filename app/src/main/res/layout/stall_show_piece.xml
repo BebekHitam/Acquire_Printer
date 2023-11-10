@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:cardBackgroundColor="#c8f902"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp"
-        app:cardMaxElevation="7dp"
+        app:cardElevation="9dp"
+        app:cardMaxElevation="11dp"
 
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"

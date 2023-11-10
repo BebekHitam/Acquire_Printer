@@ -59,33 +59,39 @@ public class FBLogIn extends AppCompatActivity {
             public void onClick(View view) {
                 String emaile = email.getText().toString();
                 String passworde = password.getText().toString();
-                if (emaile.isEmpty()){
+                if (emaile.isEmpty() || emaile == null){
                     Toast.makeText(getApplicationContext(), "Please Fill email", Toast.LENGTH_SHORT).show();
                 }
-                if (passworde.isEmpty()){
+                else if (passworde.isEmpty() || passworde == null){
+                    Toast.makeText(getApplicationContext(), "Please Fill Password", Toast.LENGTH_SHORT).show();
+                } else if (emaile.isEmpty() && passworde.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please Fill Password", Toast.LENGTH_SHORT).show();
                 }
-                mAuth.signInWithEmailAndPassword(emaile, passworde)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                else{
+                    mAuth.signInWithEmailAndPassword(emaile, passworde)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
 
-                                    Intent intenn = new Intent(FBLogIn.this, MainActivity.class);
-                                    startActivity(intenn);
-                                    finish();
-                                    Toast.makeText(FBLogIn.this, "Selamat datang " + emaile, Toast.LENGTH_SHORT).show();
+                                        Intent intenn = new Intent(FBLogIn.this, MainActivity.class);
+                                        startActivity(intenn);
+                                        finish();
+                                        Toast.makeText(FBLogIn.this, "Selamat datang " + emaile, Toast.LENGTH_SHORT).show();
 
-                                } else {
-                                    // If sign in fails, display a message to the user.
+                                    } else {
+                                        // If sign in fails, display a message to the user.
 
-                                    Toast.makeText(FBLogIn.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(FBLogIn.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
 
+                                    }
                                 }
-                            }
-                        });
+                            });
+
+                }
+
 
             }
         });
