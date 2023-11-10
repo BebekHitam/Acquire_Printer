@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.example.acquireprinter.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,6 +40,7 @@ public class ProfileViewUser extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // Request the permission.
             // Get the FusedLocationProviderClient object.
+            startLocationUpdates();
 
 
 
@@ -59,6 +61,37 @@ public class ProfileViewUser extends AppCompatActivity {
             }
         }
     }
+    private void startLocationUpdates() {
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult.getLastLocation() != null) {
+                    LatLng userLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+                    updateMap(userLocation);
+                }
+            }
+        };
+
+        fusedLocationProviderClient.requestLocationUpdates(
+                LocatinUtils.getLocationRequest(), // You need to define this method.
+                locationCallback,
+                null
+        );
+    }
+    private void updateMap(LatLng userLocation) {
+        if (mapView != null) {
+            mapView.getMapAsync(googleMap -> {
+                googleMap.clear();
+                googleMap.addMarker(new MarkerOptions()
+                        .position(userLocation)
+                        .title("Your Location"));
+                float zoomLevel = 14.0f;
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLocation, zoomLevel);
+                googleMap.moveCamera(cameraUpdate);
+            });
+        }
+    }
+
 
 
 
