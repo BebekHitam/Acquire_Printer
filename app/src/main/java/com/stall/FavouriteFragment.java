@@ -1,6 +1,5 @@
 package com.stall;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.FBPopulateData.TesterFB;
-import com.FBPopulateData.ThePopulator;
 import com.example.acquireprinter.R;
 
 
@@ -29,29 +26,31 @@ public class FavouriteFragment extends Fragment {
 
         return view;
     }
-/*
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         next=(Button) view.findViewById(R.id.toss);
         tesImageView = (Button) view.findViewById(R.id.tes_image_preview);
 
+        /*
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ThePopulator.class );
                 startActivity(intent);
             }
-        });
+        });*/
         tesImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intens = new Intent(getContext(), TesterFB.class);
-                startActivity(intens);
+                /*
+                Intent intens = new Intent(getContext(), ima.class);
+                startActivity(intens);*/
 
             }
         });
 
 
-    }*/
+    }
 }

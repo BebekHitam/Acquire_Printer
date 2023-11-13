@@ -18,8 +18,10 @@
         <Button
             android:id="@+id/tes_image_preview"
             android:layout_width="wrap_content"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/green_lime"
             android:layout_height="wrap_content"
+            android:text="maptes"
+
             />
 
         <ImageView

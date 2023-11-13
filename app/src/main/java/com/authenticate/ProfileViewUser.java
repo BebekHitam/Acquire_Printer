@@ -1,5 +1,8 @@
 package com.authenticate;
 
+import static android.content.pm.PackageManager.*;
+
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +14,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.acquireprinter.R;
+import com.forTheData.LocationUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,6 +33,7 @@ public class ProfileViewUser extends AppCompatActivity {
     private LocationCallback locationCallback;
     View view;
     private MapView mapView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,77 +41,60 @@ public class ProfileViewUser extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapview_for_the_user);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this::onMapReady);
+        //initMap();
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
             // Request the permission.
             // Get the FusedLocationProviderClient object.
-            startLocationUpdates();
+            ActivityCompat.requestPermissions(this, new String[]
+                    {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
 
 
-
-            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
         } else {
+            initMap();
             // The app already has the permission.
         }
+
     }
+    private void initMap(){
+        mapView.getMapAsync(this::onMapReady);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         if (requestCode == REQUEST_CODE_LOCATION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // The user granted the permission.
+                // Permission granted, initialize the map
+                initMap();
             } else {
-                // The user denied the permission.
+                // Permission denied, handle the error or show a message
             }
         }
     }
-    private void startLocationUpdates() {
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                if (locationResult.getLastLocation() != null) {
-                    LatLng userLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
-                    updateMap(userLocation);
-                }
-            }
-        };
+    public void onMapReady(GoogleMap googleMap){
+        //cek permition
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PERMISSION_GRANTED){
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+                if (location != null){
+                    LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    googleMap.addMarker(new MarkerOptions().position(currentLatLng).title("kamu sekarang"));
+                    float zoomLevel = 14.0f;
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng, zoomLevel);
+                    googleMap.moveCamera(cameraUpdate);
+                }else{
+                    LatLng RumahUser = new LatLng(43.158576, 141.239727);
 
-        fusedLocationProviderClient.requestLocationUpdates(
-                LocatinUtils.getLocationRequest(), // You need to define this method.
-                locationCallback,
-                null
-        );
-    }
-    private void updateMap(LatLng userLocation) {
-        if (mapView != null) {
-            mapView.getMapAsync(googleMap -> {
-                googleMap.clear();
-                googleMap.addMarker(new MarkerOptions()
-                        .position(userLocation)
-                        .title("Your Location"));
-                float zoomLevel = 14.0f;
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLocation, zoomLevel);
-                googleMap.moveCamera(cameraUpdate);
+                    float zoomLevel = 14.0f;
+                    CameraUpdate cameraLepel = CameraUpdateFactory.newLatLngZoom(RumahUser, zoomLevel);
+                    googleMap.moveCamera(cameraLepel);
+
+                }
             });
         }
-    }
-
-
-
-
-    public void onMapReady(GoogleMap googleMap){
         //posisi untuk latlng nanti akan mengguanakan getter tapi ndak tahu caranya
-
-        LatLng RumahUser = new LatLng(-7.833798, 110.117289);
-        googleMap.addMarker(new MarkerOptions()
-                .position(RumahUser)
-                .title("Borobudur"));
-        float zoomLevel = 14.0f;
-        CameraUpdate cameraLepel = CameraUpdateFactory.newLatLngZoom(RumahUser, zoomLevel);
-        googleMap.moveCamera(cameraLepel);
-
-
     }
 }

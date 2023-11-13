@@ -49,6 +49,7 @@
         <activity android:name="com.stall.comChat" />
         <activity android:name="com.stall.TalkTo"/>
 
+
         
 
 

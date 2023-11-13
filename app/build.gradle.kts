@@ -47,7 +47,7 @@ dependencies {
     //ini untuk implementasi google mapsnya, utils untuk utilisasi jika user ingin zoom atau apalah
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-base:18.2.0")
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
     //
 
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
