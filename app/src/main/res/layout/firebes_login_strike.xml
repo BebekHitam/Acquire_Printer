@@ -58,9 +58,7 @@
                         android:id="@+id/in_for_email"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-
                         android:background="@drawable/custom_edittext"
-
                         android:drawablePadding="8dp"
                         android:hint="Username"
                         android:padding="8dp"

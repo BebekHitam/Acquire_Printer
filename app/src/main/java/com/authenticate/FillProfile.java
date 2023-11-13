@@ -144,7 +144,7 @@ public class FillProfile extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
                 calendar.set(selectedYear, selectedMonth, selectedDay);
-                SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy", Locale.US);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
                 dateEditText.setText(sdf.format(calendar.getTime()));
             }
         }, year, month, day);
