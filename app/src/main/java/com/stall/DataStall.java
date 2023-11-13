@@ -12,18 +12,20 @@ public class DataStall implements Serializable {
     public int price;
     public String city;
 
-    public DataStall( String itemName, String imageUrl, int price, String city){
-
+    public DataStall(String iydi, String itemName, String imageUrl, int price, String city){
+        this.iydi = iydi;
         this.itemName=itemName;
         this.imageUrl=imageUrl;
         this.price=price;
         this.city = city;
     }
+    public String getIydi(){return iydi;}
     public int getPrice() {
         return price;
     }
 
     public void setPrice(int price){this.price=price;}
+    public void setIydi(String iydi){this.iydi=iydi;}
 
     public String getImageUrl() {
         return imageUrl;

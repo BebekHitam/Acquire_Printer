@@ -55,6 +55,7 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
         //set harganya
         holder.price.setText(Integer.toString(item.getPrice()));
         holder.city.setText(item.getCity());
+        holder.theID.setText(item.getIydi());
         
         //holder.city.setText(item.getCity());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -81,12 +82,15 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
 
+
+        TextView theID;
         ImageView image;
         TextView text;
         TextView price;
         TextView city;
         public ViewHolder(@NonNull View productView){
             super(productView);
+            theID = productView.findViewById(R.id.iydi_placement);
             image = productView.findViewById(R.id.product_small_view);
             text = productView.findViewById(R.id.product_name);
             price = productView.findViewById(R.id.product_price);
