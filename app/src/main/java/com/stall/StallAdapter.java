@@ -63,7 +63,8 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
             public void onClick(View v) {
                 // Start the new activity.
                 Intent intent = new Intent(thisUp, ItemDetail.class);
-                intent.putExtra("item_data", listItem.get(position));
+                intent.putExtra("name", listItem.get(position));
+
                 //ini gimana
                 thisUp.startActivity(intent);
             }

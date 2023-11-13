@@ -29,6 +29,16 @@ public class ItemDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_detail_view);
 
+        Intent intent = getIntent();
+        String myExtra = intent.getStringExtra("name");
+
+        if (myExtra != null) {
+            Toast.makeText(getApplicationContext(), myExtra, Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "noDataReceived", Toast.LENGTH_SHORT).show();
+
+        }
+
         isMe = FirebaseAuth.getInstance();
         FirebaseUser currentUser = isMe.getCurrentUser();
         profill=findViewById(R.id.the_renter);
