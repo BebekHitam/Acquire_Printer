@@ -22,17 +22,11 @@
                 android:text="@string/name" />
 
             <EditText
-                android:id="@+id/the_name_of_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:background="@drawable/custom_edit_text2"
-                android:drawablePadding="8dp"
-                android:focusable="false"
-                android:hint="Mr. Bob"
-                android:inputType="date"
-                android:onClick="showDatePickerDialog"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:hint="First Name" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,7 +45,7 @@
                 android:focusable="false"
                 android:hint="Today"
                 android:inputType="date"
-                android:onClick="showDatePickerDialog"
+
                 android:padding="8dp" />
 
             <TextView

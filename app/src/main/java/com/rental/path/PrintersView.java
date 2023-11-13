@@ -45,26 +45,12 @@ public class PrintersView extends AppCompatActivity {
         printerList = new ArrayList<>();
         //isi list berdasar data
         fetchFirestoreData();
-        /*
-        printerList.add(new DataStall("Printer L1210", R.drawable.printer_l1210, 25000, "Jogja"));
-        printerList.add(new DataStall("Printer L4266",  R.drawable.printer_l4266,10000, "Jakarta"));
-        printerList.add(new DataStall("Printer M1100",  R.drawable.printer_m1100_sfp_m, 20000,"Bandung"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
-        printerList.add(new DataStall("Printer L15150",  R.drawable.printer_l15150, 30000,"Surabaya"));
 
-        StallAdapter adapter = new StallAdapter(printerList, this);
-        GridLayoutManager layout = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layout);
-        recyclerView.setAdapter(adapter);
-        */
+       //form ask location yang masih belum dipakai
+        locationTag();
 
+    }
+    public void locationTag(){
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // Request the permission.
             ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
@@ -95,6 +81,7 @@ public class PrintersView extends AppCompatActivity {
                         printerList.clear();
                         // Iterate through Firestore documents and add data to the list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String id = document.getString("Document ID");
                             String name = document.getString("name");
                             String imageUrl = document.getString("image");
                             long price = document.getLong("price");

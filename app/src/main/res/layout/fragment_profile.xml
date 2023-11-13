@@ -25,7 +25,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/cat_bob"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -38,23 +38,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_name"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="20dp"
+                        android:layout_marginStart="16dp"
+                        android:textSize="20sp"
                         android:layout_marginTop="26dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="bobylonia@gmail.com"
-                        android:layout_marginLeft="16dp"/>
+                        android:layout_marginStart="16dp"/>
                     <TextView
                         android:paddingTop="6dp"
-                        android:paddingLeft="16dp"
+                        android:paddingStart="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Profile completness"/>
                     <TextView
-                        android:paddingLeft="20dp"
+                        android:paddingStart="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="50%"/>
@@ -111,6 +111,11 @@
                 android:text="Log me in"
                 android:backgroundTint="@color/green_lime"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_lime"
+                android:text="Make me Renter"/>
             <Button
                 android:backgroundTint="@color/green_lime"
                 android:id="@+id/test"

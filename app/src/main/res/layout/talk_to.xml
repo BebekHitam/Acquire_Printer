@@ -14,6 +14,32 @@
             android:orientation="vertical"
             android:textAlignment="textEnd"
             >
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green_lime"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/the_renter"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/custom_edit_text2"/>
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:text="Mr. Fajar"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+            </TableLayout>
             <ListView
                 android:padding="9dp"
                 android:id="@+id/talking_box"
@@ -42,6 +68,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:autofillHints="Text message"
+            android:hint="enter a text"
             android:inputType="text" />
 
         <Button
