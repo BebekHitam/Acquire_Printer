@@ -27,11 +27,14 @@ import com.example.acquireprinter.MainActivity;
 import com.example.acquireprinter.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class FillProfile extends AppCompatActivity {
 
@@ -43,9 +46,10 @@ public class FillProfile extends AppCompatActivity {
     Button pickDate;
     String Male = "Male";
     String Female = "Female";
-    private EditText dateEditText;
+    private EditText FirstName, LastName, dateEditText, jobs, kanpani, ahome, lastEducation, telep, emergencyTelep;
     private Calendar calendar;
     Button submitPlease;
+    private String firstname, lastname, gendernya, birth, job, companyon, hometown, marriedal, lasteducation, phone, emergencyphone ;
 
     //isi firebase dulu dong boss
     private FirebaseAuth auth;
@@ -59,12 +63,20 @@ public class FillProfile extends AppCompatActivity {
         //initiate firebase
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        FirstName = findViewById(R.id.first_name_edit_text);
+        LastName = findViewById(R.id.last_name_edit_text);
+        //gender
+        jobs = findViewById(R.id.job_edit_text);
+        kanpani = findViewById(R.id.office_or_agency_edit_text);
+        ahome = findViewById(R.id.hometown_edit_text);
+        //marital status
+        lastEducation = findViewById(R.id.last_education_edit_text);
+        telep = findViewById(R.id.phone_number_edit_text);
+        emergencyTelep = findViewById(R.id.emergency_phone_number_edit_text);
+
 
         //cek user boolean null or not
         FirebaseUser user = auth.getCurrentUser();
-
-
-
 
         //-----------------------------------------------------------------------------------------
         //ini untuk dropdown jenis kelamin
@@ -80,14 +92,18 @@ public class FillProfile extends AppCompatActivity {
 
                 String soYouAre= (String) adapterView.getItemAtPosition(position);
                 if (position==1){
-                    Toast.makeText(getApplicationContext(), "so you are men", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Hello Mr.", Toast.LENGTH_SHORT).show();
+                    gendernya = "male";
                 }else if (position==2){
-                    Toast.makeText(getApplicationContext(), "so you are women", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Hello Mrs.", Toast.LENGTH_SHORT).show();
+                    gendernya = "female";
+                }else{
+                    gendernya = "unknown";
                 }
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+                gendernya = "unknown";
 
             }
         });
@@ -123,7 +139,8 @@ public class FillProfile extends AppCompatActivity {
                 if (user == null){
                     Toast.makeText(getApplicationContext(), "You not logged in yet", Toast.LENGTH_SHORT).show();
                 } else if (user != null) {
-                    Toast.makeText(getApplicationContext(), "Sended but not stored in data", Toast.LENGTH_SHORT).show();
+
+                    onItemSubmitted();
 
                 }
             }
@@ -146,6 +163,7 @@ public class FillProfile extends AppCompatActivity {
                 calendar.set(selectedYear, selectedMonth, selectedDay);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
                 dateEditText.setText(sdf.format(calendar.getTime()));
+                birth = sdf.format(calendar.getTime());
             }
         }, year, month, day);
 
@@ -160,6 +178,46 @@ public class FillProfile extends AppCompatActivity {
     }
 
     //--------------------------
+
+    //get semua data dan pada saat onclick langsung kirim ke firebase
+    private void onItemSubmitted(){
+
+        firstname = FirstName.getText().toString();
+        lastname = LastName.getText().toString();
+        gendernya = gendernya.toString();
+        //birth
+        job = jobs.getText().toString();
+        companyon = kanpani.getText().toString();
+        hometown = ahome.getText().toString();
+        //marriedStatus
+        lasteducation = lastEducation.getText().toString();
+        phone = telep.getText().toString();
+        emergencyphone = emergencyTelep.getText().toString();
+
+        if (firstname.isEmpty()){
+            Toast.makeText(getApplicationContext(), "please fill data first", Toast.LENGTH_SHORT).show();
+        } else if (hometown.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "please fill complete data", Toast.LENGTH_SHORT).show();
+        }else{
+            DocumentReference documentReference = db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            Map<String, Object> profilData = new HashMap<>();
+            profilData.put("firstname", firstname);
+            profilData.put("lastname", lastname);
+            profilData.put("job", job);
+            profilData.put("company", companyon);
+            profilData.put("hometown", hometown);
+            profilData.put("education", lasteducation);
+            profilData.put("telp", phone);
+            profilData.put("emergency telp", emergencyphone);
+
+            //tambahkan bila sukses dan bila gagal
+            //documentReference.set(profilData).addOnSuccessListener()
+
+            Toast.makeText(getApplicationContext(), "data delivered succesfully", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
 
 
 

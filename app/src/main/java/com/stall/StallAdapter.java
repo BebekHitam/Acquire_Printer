@@ -56,6 +56,7 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
         holder.price.setText(Integer.toString(item.getPrice()));
         holder.city.setText(item.getCity());
         holder.theID.setText(item.getIydi());
+        String halo = "halo tono";
         
         //holder.city.setText(item.getCity());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +64,9 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
             public void onClick(View v) {
                 // Start the new activity.
                 Intent intent = new Intent(thisUp, ItemDetail.class);
-                intent.putExtra("name", listItem.get(position));
+                intent.putExtra("name", listItem.get(position).getItemName());
+                //ini udah berhasil tapi pakai metode key value pairs
+                intent.putExtra("halo", halo);
 
                 //ini gimana
                 thisUp.startActivity(intent);
