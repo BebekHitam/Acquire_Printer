@@ -1,21 +1,31 @@
 package com.FBPopulateData;
 
 public class FBDataModelPrinter {
+    private String documentID;
     private String name;
     private String image;
     private double price;
     private String city;
 
+
     public FBDataModelPrinter() {
+        this.documentID = documentID;
         this.name = name;
         this.image = image;
         this.price = price;
         this.city = city;
+
     }
 
     //ini masih meragukan coba lagi nanti
 
 
+    public String getDocumentID() {
+        return documentID;
+    }
+    public void setDocumentID(String documentID) {
+        this.documentID = documentID;
+    }
     public String getName() {
         return name;
     }

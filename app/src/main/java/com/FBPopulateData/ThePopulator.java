@@ -58,48 +58,6 @@ public class ThePopulator extends AppCompatActivity {
             }
         });
 
-
-
-        /*
-        //masukkan dulu dalam set on click listener
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String namanya = printerName.getText().toString();
-                String harga = printerPrice.getText().toString();
-                String lokasi = printerLocation.getText().toString();
-
-
-                FBDataModelPrinter printer = new FBDataModelPrinter();
-                printer.setName(namanya);
-
-                printer.setPrice(Integer.parseInt(harga));
-                printer.setCity(lokasi);
-                db.collection("printers")
-                        .add(printer)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    // Successfully added data to Firestore
-                                    Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                        .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Handle the error
-                                    Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-
-
-
-
-
-            }
-        });*/
-
     }
     private void pickImage() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -136,6 +94,75 @@ public class ThePopulator extends AppCompatActivity {
                         String harga = printerPrice.getText().toString();
                         String lokasi = printerLocation.getText().toString();
 
+                        if (namanya.isEmpty() || harga.isEmpty() || lokasi.isEmpty()) {
+                            Toast.makeText(ThePopulator.this, "Please Fill the data", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        // Create a reference to the image in Firebase Storage
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + imageUri.getLastPathSegment());
+
+                        // Upload the selected image to Firebase Storage
+                        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // The image has been successfully uploaded to Firebase Storage
+                                // Get the download URL for the image
+                                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri downloadUrl) {
+                                        // Now, you have the download URL
+                                        // Store this URL along with other data in Firestore
+
+                                        FBDataModelPrinter printer = new FBDataModelPrinter();
+                                        printer.setName(namanya);
+                                        printer.setPrice(Integer.parseInt(harga));
+                                        printer.setCity(lokasi);
+                                        printer.setImage(downloadUrl.toString()); // Set the image URL
+
+                                        db.collection("printers")
+                                                .add(printer)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        // Successfully added data to Firestore
+                                                        Toast.makeText(ThePopulator.this, "Upload oke", Toast.LENGTH_SHORT).show();
+                                                        //jika ingin retreive uniqueID maka gunakan
+                                                        //String DocumentId = documentReference.getId();
+
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        // Handle the error
+                                                        Toast.makeText(ThePopulator.this, "Failed Upload", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    }
+                                });
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // The image failed to upload to Firebase Storage
+                                // Handle the error
+                                Toast.makeText(ThePopulator.this, "Upload Failed Succesfully", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+
+                /*submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                        String namanya = printerName.getText().toString();
+                        String harga = printerPrice.getText().toString();
+                        String lokasi = printerLocation.getText().toString();
+
                         if (namanya.isEmpty()|| harga.isEmpty() || lokasi.isEmpty()){
                             Toast.makeText(ThePopulator.this, "Please Fill the data", Toast.LENGTH_SHORT).show();
                         }
@@ -162,9 +189,6 @@ public class ThePopulator extends AppCompatActivity {
                                 });
 
 
-
-
-
                         // Upload the selected image to Firebase Storage
                         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + imageUri.getLastPathSegment());
                         storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -186,7 +210,7 @@ public class ThePopulator extends AppCompatActivity {
                             }
                         });
                     }
-                });
+                });*/
 
 
             }

@@ -82,6 +82,7 @@ public class PrintersView extends AppCompatActivity {
                         // Iterate through Firestore documents and add data to the list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String id = document.getString("Document ID");
+                            String documentId = document.getId();
                             String name = document.getString("name");
                             String imageUrl = document.getString("image");
                             long price = document.getLong("price");
@@ -104,5 +105,8 @@ public class PrintersView extends AppCompatActivity {
                         Toast.makeText(PrintersView.this, "failed read database", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    private void enableDeletion(String documentID){
+
     }
 }
