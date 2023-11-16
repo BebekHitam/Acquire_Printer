@@ -49,6 +49,7 @@ public class TalkTo extends AppCompatActivity {
                     AdapterChat chatAdapter = new AdapterChat(getApplicationContext(), newTalk);
                     ListView listChat = findViewById(R.id.talking_box);
                     listChat.setAdapter(chatAdapter);
+                    gotTheText.setText("");
 
 
                     /*

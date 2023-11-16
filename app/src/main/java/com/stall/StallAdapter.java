@@ -66,7 +66,7 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
                 Intent intent = new Intent(thisUp, ItemDetail.class);
                 intent.putExtra("name", listItem.get(position).getItemName());
                 //ini udah berhasil tapi pakai metode key value pairs
-                intent.putExtra("halo", halo);
+                intent.putExtra("halo", listItem.get(position).getIydi());
 
                 //ini gimana
                 thisUp.startActivity(intent);
@@ -99,6 +99,7 @@ public class StallAdapter extends RecyclerView.Adapter<StallAdapter.ViewHolder>{
             text = productView.findViewById(R.id.product_name);
             price = productView.findViewById(R.id.product_price);
             city = productView.findViewById(R.id.product_city);
+            theID.setVisibility(View.INVISIBLE);
 
 
         }

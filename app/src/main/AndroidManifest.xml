@@ -48,6 +48,7 @@
         <activity android:name="com.stall.UnderProgress"/>
         <activity android:name="com.stall.comChat" />
         <activity android:name="com.stall.TalkTo"/>
+        <activity android:name="com.details.object.DetailForPrinter"/>
 
 
         

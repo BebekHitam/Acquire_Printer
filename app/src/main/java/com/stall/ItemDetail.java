@@ -30,7 +30,7 @@ public class ItemDetail extends AppCompatActivity {
         setContentView(R.layout.item_detail_view);
 
         Intent intent = getIntent();
-        String myExtra = intent.getStringExtra("name");
+        String myExtra = intent.getStringExtra("halo");
 
         if (myExtra != null) {
             Toast.makeText(getApplicationContext(), myExtra, Toast.LENGTH_SHORT).show();
