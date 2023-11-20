@@ -20,7 +20,6 @@ public class DetailForPrinter extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_detail_f_print_alpha);
-
         NameofThePrinter = findViewById(R.id.nama_printer_di_alpha);
         PriceforRent = findViewById(R.id.price_for_rentall);
 

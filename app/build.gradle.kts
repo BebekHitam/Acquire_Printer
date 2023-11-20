@@ -43,6 +43,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.sqlite:sqlite:2.3.1")
 
+    implementation("androidx.activity:activity-ktx:1.5.0")
+
 
     //ini untuk implementasi google mapsnya, utils untuk utilisasi jika user ingin zoom atau apalah
     implementation("com.google.android.gms:play-services-maps:18.2.0")
