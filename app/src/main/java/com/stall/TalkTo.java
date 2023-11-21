@@ -1,5 +1,6 @@
 package com.stall;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,9 @@ import com.chatOke.AdapterChat;
 import com.chatOke.UserChatData;
 import com.example.acquireprinter.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TalkTo extends AppCompatActivity {
@@ -37,6 +40,7 @@ public class TalkTo extends AppCompatActivity {
         goChat = findViewById(R.id.send);
         //columnChat = findViewById(R.id.talking_box);
 
+
         goChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,11 +49,12 @@ public class TalkTo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "masukkan teks", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    newTalk.add(new UserChatData(R.drawable.cat_bob, "Bob", chatnya));
+                    newTalk.add(new UserChatData(R.drawable.cat_bob, "Bob", chatnya, currentTime()));
                     AdapterChat chatAdapter = new AdapterChat(getApplicationContext(), newTalk);
                     ListView listChat = findViewById(R.id.talking_box);
                     listChat.setAdapter(chatAdapter);
                     gotTheText.setText("");
+
 
 
                     /*
@@ -61,5 +66,14 @@ public class TalkTo extends AppCompatActivity {
 
             }
         });
+
+
+    }
+    public String currentTime(){
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Date now = new Date();
+        String timenow = sdf.format(now);
+        return timenow;
+
     }
 }

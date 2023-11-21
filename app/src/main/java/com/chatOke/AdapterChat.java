@@ -19,6 +19,8 @@ public class AdapterChat extends ArrayAdapter<UserChatData> {
         this.contexx = contexx;
 
     }
+
+
     @Override
     public View getView(int position, View theChat, ViewGroup parent){
         if (theChat == null) {
@@ -28,10 +30,12 @@ public class AdapterChat extends ArrayAdapter<UserChatData> {
         ImageView otherSide = theChat.findViewById(R.id.the_far_away);
         TextView nameOtherSide = theChat.findViewById(R.id.namaa);
         TextView content = theChat.findViewById(R.id.contents);
+        TextView timeSend = theChat.findViewById(R.id.time_itsend);
 
         otherSide.setImageResource(getItem(position).getUserIDImage());
         nameOtherSide.setText(getItem(position).getUserName());
         content.setText(getItem(position).getKonten());
+        timeSend.setText(getItem(position).getTimeNow());
 
 
         return theChat;

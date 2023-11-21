@@ -66,9 +66,6 @@
                 android:layout_marginBottom="8dp"
                 android:textSize="18sp"/>
 
-
-
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/the_renter"
                 android:layout_width="match_parent"
@@ -137,12 +134,14 @@
                 android:textSize="16sp"
                 android:text="Product Detail" />
             <TextView
+
                 android:padding="20dp"
                 android:id="@+id/paragraph_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:text="Printer Type - Ink Tank; Functionality - All-in-One (Print, Scan, Copy) , Scanner type - Flatbed; Printer Output - Colour
+                android:text="Printer Type
+                - Ink Tank; Functionality - All-in-One (Print, Scan, Copy) , Scanner type - Flatbed; Printer Output - Colour
 Connectivity - Wi-Fi, USB, App
 Pages per minute - 33 pages (Black and White), 15 pages (Colour) ; Cost per page - 7 paise (Black and White), 18 paise (Colour) - As per ISO standards
 Ideal usage - Home and Small office, Regular / Heavy usage (more than 300 pages per month)

@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Acquire Printer"
 include(":app")
+include(":messaging")
