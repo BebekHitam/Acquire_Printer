@@ -1,7 +1,7 @@
 package com.FBPopulateData;
 
 public class FBDataModelPrinter {
-    private String documentID;
+    private String laneID;
     private String name;
     private String image;
     private double price;
@@ -9,7 +9,7 @@ public class FBDataModelPrinter {
 
 
     public FBDataModelPrinter() {
-        this.documentID = documentID;
+        this.laneID = laneID;
         this.name = name;
         this.image = image;
         this.price = price;
@@ -20,11 +20,11 @@ public class FBDataModelPrinter {
     //ini masih meragukan coba lagi nanti
 
 
-    public String getDocumentID() {
-        return documentID;
+    public String getLaneID() {
+        return laneID;
     }
-    public void setDocumentID(String documentID) {
-        this.documentID = documentID;
+    public void setLaneID(String laneID) {
+        this.laneID = laneID;
     }
     public String getName() {
         return name;

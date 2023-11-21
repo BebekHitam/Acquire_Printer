@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import java.util.UUID;
 
 public class ThePopulator extends AppCompatActivity {
     View view;
@@ -94,6 +95,7 @@ public class ThePopulator extends AppCompatActivity {
                     public void onClick(View v) {
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+                        String uniqueID = UUID.randomUUID().toString(); //keauthenticannya masih dipertanyakan tapi patut dicoba
                         String namanya = printerName.getText().toString();
                         String harga = printerPrice.getText().toString();
                         String lokasi = printerLocation.getText().toString();
@@ -119,6 +121,7 @@ public class ThePopulator extends AppCompatActivity {
                                         // Store this URL along with other data in Firestore
 
                                         FBDataModelPrinter printer = new FBDataModelPrinter();
+                                        printer.setLaneID(uniqueID);
                                         printer.setName(namanya);
                                         printer.setPrice(Integer.parseInt(harga));
                                         printer.setCity(lokasi);

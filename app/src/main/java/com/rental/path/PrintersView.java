@@ -81,15 +81,16 @@ public class PrintersView extends AppCompatActivity {
                         printerList.clear();
                         // Iterate through Firestore documents and add data to the list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String id = document.getString("Document ID");
-                            String documentId = document.getId();
+                            //String id = document.getString("Document ID");
+                            String documentId = document.getId();//ini tuh automatis id di firebase
+                            String laneId = document.getString("laneID");
                             String name = document.getString("name");
                             String imageUrl = document.getString("image");
                             long price = document.getLong("price");
                             String location = document.getString("city");
                             // Add this data to your printerList
                             int priceInt = (int) price;
-                            printerList.add(new DataStall(documentId, name, imageUrl, priceInt, location));
+                            printerList.add(new DataStall(laneId, name, imageUrl, priceInt, location));
                         }
                         // Notify the adapter that data has changed
                         StallAdapter adapter = new StallAdapter(printerList, PrintersView.this);
