@@ -23,6 +23,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.acquireprinter.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,13 +39,18 @@ public class ThePopulator extends AppCompatActivity {
     private Button chooseImage, submit;
     private TextView nameOfImage;
     private static final int PICK_IMAGE_REQUEST = 1;
+    FirebaseAuth useAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.populator_layout);
+        //untuk firebase masih belum digunakan
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
+        useAuth = FirebaseAuth.getInstance();
+        FirebaseUser thisUser = useAuth.getCurrentUser();
+
 
 
         printerName = findViewById(R.id.nameoftheprinter);

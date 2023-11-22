@@ -3,6 +3,7 @@ package com.authenticate;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -25,8 +26,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.acquireprinter.MainActivity;
 import com.example.acquireprinter.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -54,14 +59,21 @@ public class FillProfile extends AppCompatActivity {
     //isi firebase dulu dong boss
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+    FirebaseDatabase database;
+    private FirebaseUser userNow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fill_profile);
 
+        //userNow = FirebaseAuth.getInstance().getCurrentUser();
+
+
+
         //initiate firebase
         auth = FirebaseAuth.getInstance();
+        userNow = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         FirstName = findViewById(R.id.first_name_edit_text);
         LastName = findViewById(R.id.last_name_edit_text);
@@ -180,11 +192,61 @@ public class FillProfile extends AppCompatActivity {
     //--------------------------
 
     //get semua data dan pada saat onclick langsung kirim ke firebase
+    /*
+    private void onItemSubmitted() {
+        String firstname = FirstName.getText().toString();
+        String lastname = LastName.getText().toString();
+        String job = jobs.getText().toString();
+        String companyon = kanpani.getText().toString();
+        String hometown = ahome.getText().toString();
+        String lasteducation = lastEducation.getText().toString();
+        String phone = telep.getText().toString();
+        String emergencyphone = emergencyTelep.getText().toString();
+
+        if (firstname.isEmpty() || hometown.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please fill in all data", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (userNow != null) {
+            String Uid = userNow.getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(Uid);
+
+            Map<String, Object> profilData = new HashMap<>();
+            profilData.put("firstname", firstname);
+            profilData.put("lastname", lastname);
+            profilData.put("job", job);
+            profilData.put("company", companyon);
+            profilData.put("hometown", hometown);
+            profilData.put("education", lasteducation);
+            profilData.put("telp", phone);
+            profilData.put("emergency telp", emergencyphone);
+
+            userRef.setValue(profilData)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getApplicationContext(), "Data delivered successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Data failed to deliver", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(getApplicationContext(), "Please login first", Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
+
     private void onItemSubmitted(){
+
 
         firstname = FirstName.getText().toString();
         lastname = LastName.getText().toString();
-        gendernya = gendernya.toString();
+        //gendernya = gendernya.toString();
         //birth
         job = jobs.getText().toString();
         companyon = kanpani.getText().toString();
@@ -199,21 +261,52 @@ public class FillProfile extends AppCompatActivity {
         } else if (hometown.isEmpty()) {
             Toast.makeText(getApplicationContext(), "please fill complete data", Toast.LENGTH_SHORT).show();
         }else{
-            DocumentReference documentReference = db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            Map<String, Object> profilData = new HashMap<>();
-            profilData.put("firstname", firstname);
-            profilData.put("lastname", lastname);
-            profilData.put("job", job);
-            profilData.put("company", companyon);
-            profilData.put("hometown", hometown);
-            profilData.put("education", lasteducation);
-            profilData.put("telp", phone);
-            profilData.put("emergency telp", emergencyphone);
+            if (userNow != null){
+                String Uid = userNow.getUid();
+                //DocumentReference documentReference = db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                Map<String, Object> profilData = new HashMap<>();
+                profilData.put("firstname", firstname);
+                profilData.put("lastname", lastname);
+                profilData.put("job", job);
+                profilData.put("company", companyon);
+                profilData.put("hometown", hometown);
+                profilData.put("education", lasteducation);
+                profilData.put("telp", phone);
+                profilData.put("emergency telp", emergencyphone);
+                DocumentReference userRef = FirebaseFirestore.getInstance().collection("users").document(Uid);
 
-            //tambahkan bila sukses dan bila gagal
-            //documentReference.set(profilData).addOnSuccessListener()
+                // Write the user profile data to Firebase
 
-            Toast.makeText(getApplicationContext(), "data delivered succesfully", Toast.LENGTH_SHORT).show();
+
+                //tambahkan bila sukses dan bila gagal
+                //documentReference.set(profilData).addOnSuccessListener()
+
+                //Toast.makeText(getApplicationContext(), "data delivered succesfully", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(this, Profile.class);
+                userRef.set(profilData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Data uploaded successfully
+                        Toast.makeText(getApplicationContext(), "data delivered succesfully", Toast.LENGTH_SHORT).show();
+
+                        // Perform actions related to successful upload
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Data upload failed
+                        Toast.makeText(getApplicationContext(), "data fail to deliver", Toast.LENGTH_SHORT).show();
+
+                        // Handle upload failure scenario
+                    }
+                });
+
+                //startActivity(intent);
+            } else if (userNow == null) {
+                Toast.makeText(getApplicationContext(), "please login first", Toast.LENGTH_SHORT).show();
+
+            }
+
         }
 
 

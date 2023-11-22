@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.fragment.app.Fragment;
 
 import android.view.KeyEvent;
@@ -16,12 +17,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.acquireprinter.R;
+import com.google.android.material.carousel.CarouselLayoutManager;
 import com.stall.UnderProgress;
 
 public class HomeFragment extends Fragment {
 
+
+
     CardView isThePrinter, isTheProjector, isTheScanner;
     View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +42,8 @@ public class HomeFragment extends Fragment {
         isThePrinter = view.findViewById(R.id.cardview_for_printer);
         isTheProjector = view.findViewById(R.id.cardview_for_projector);
         isTheScanner = view.findViewById(R.id.cardview_for_scanner);
+
+
 
         isThePrinter.setOnClickListener(new View.OnClickListener() {
             @Override

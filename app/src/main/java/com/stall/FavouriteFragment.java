@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.details.object.DetailForPrinter;
 import com.example.acquireprinter.R;
+import com.testing.uploadRDB;
 
 
 public class FavouriteFragment extends Fragment {
@@ -46,9 +47,9 @@ public class FavouriteFragment extends Fragment {
         tesImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent intens = new Intent(getContext(), ima.class);
-                startActivity(intens);*/
+
+                Intent intens = new Intent(getContext(), uploadRDB.class);
+                startActivity(intens);
 
             }
         });

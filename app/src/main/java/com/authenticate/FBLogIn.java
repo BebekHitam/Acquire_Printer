@@ -47,11 +47,11 @@ public class FBLogIn extends AppCompatActivity {
 
         email = findViewById(R.id.in_for_email);
         password = findViewById(R.id.in_for_psw);
-
         mAuth = FirebaseAuth.getInstance();
         skip = findViewById(R.id.skip_buttonee);
         login = findViewById(R.id.ke_login);
         sugnup = findViewById(R.id.ke_sign_up);
+
 
 
         login.setOnClickListener(new View.OnClickListener() {
