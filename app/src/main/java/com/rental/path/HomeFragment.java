@@ -27,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
-
+    Timer timer = new Timer();
     private ViewPager viewPager;
     private AdapterSlider adapterSlider;
     private List<Integer> listIklan;
@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
         listIklan = new ArrayList<Integer>();
 
         context = getContext();
-
+        //buatkan adapter untuk menangkap gambar terbaru dari internet
         listIklan.add(R.drawable.ep_886aw);
         listIklan.add(R.drawable.ep_m15140);
         listIklan.add(R.drawable.printer_bg);
@@ -63,19 +63,7 @@ public class HomeFragment extends Fragment {
         adapterSlider = new AdapterSlider(context, listIklan);
         viewPager.setAdapter(adapterSlider);
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                getActivity().runOnUiThread(() -> {
-                    if (viewPager.getCurrentItem() < listIklan.size() - 1){
-                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                    } else {
-                        viewPager.setCurrentItem(0);
-                    }
-                });
-            }
-        }, 3000, 3000);
+        startTimer();
 
 
 
@@ -123,6 +111,31 @@ public class HomeFragment extends Fragment {
             return false;
         });
 
+    }
+    private void startTimer(){
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                getActivity().runOnUiThread(() -> {
+                    if (viewPager.getCurrentItem() < listIklan.size() - 1){
+                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                });
+            }
+        }, 3000, 3000);
+    }
+    @Override
+    public void onDetach() {
+        // Stop the timer when the fragment is destroyed or stopped
+        super.onDetach();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        super.onDestroyView();
     }
 
 }
